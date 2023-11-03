@@ -1,224 +1,134 @@
 package;
 
-#if android
-import android.content.Context;
-#end
-import backend.Data;
-import flixel.util.FlxColor;
-import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxState;
-import haxe.io.Path;
-import haxe.CallStack;
-import haxe.Exception;
-import haxe.Log;
-#if hl
-import hl.Api;
-#end
-import lime.system.System as LimeSystem;
+import openfl.Assets;
+import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
-import openfl.errors.Error;
-import openfl.events.ErrorEvent;
-import openfl.events.UncaughtErrorEvent;
-import openfl.system.System as OpenFLSystem;
-import openfl.utils.AssetCache;
-import openfl.utils.Assets;
-import openfl.Lib;
-#if MODS
-import polymod.Polymod;
-#end
-import states.Startup;
-#if sys
-import sys.io.File;
-import sys.FileSystem;
-#end
-
-using StringTools;
+import openfl.events.AsyncErrorEvent;
+import openfl.events.Event;
+import openfl.events.MouseEvent;
+import openfl.events.NetStatusEvent;
+import openfl.media.Video;
+import openfl.net.NetConnection;
+import openfl.net.NetStream;
 
 class Main extends Sprite
 {
-	public static var fpsOverlay:FPS;
+	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
+	var framerate:Int = 60; // How many frames per second the game should run at.
+	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
+	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
-	public function new():Void
+	// You can pretty much ignore everything from here on - your code should go in your states.
+
+	public static function main():Void
+	{
+		Lib.current.addChild(new Main());
+	}
+
+	public function new()
 	{
 		super();
 
-		#if android
-		Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
-		#elseif (ios || switch)
-		Sys.setCwd(LimeSystem.applicationStorageDirectory);
-		#end
-
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
-
-		#if hl
-		Api.setErrorHandler(onCriticalError);
-		#elseif cpp
-		untyped __global__.__hxcpp_set_critical_error_handler(onCriticalError);
-		#end
-
-		FlxG.signals.gameResized.add(onResizeGame);
-		FlxG.signals.preStateCreate.add(onPreStateCreate);
-
-		// Run the garbage colector after the state switched...
-		FlxG.signals.postStateSwitch.add(OpenFLSystem.gc);
-		
-		addChild(new FlxGame(640, 480, Startup, 30, 30));
-
-		#if android
-		FlxG.android.preventDefaultKeys = [BACK];
-		#end
-
-		fpsOverlay = new FPS(10, 10, FlxColor.RED);
-		fpsOverlay.visible = Data.settings.get('fps-overlay');
-		addChild(fpsOverlay);
-	}
-
-	private inline function onUncaughtError(event:UncaughtErrorEvent):Void
-	{
-		event.preventDefault();
-		event.stopImmediatePropagation();
-
-		final log:Array<String> = [];
-
-		if (Std.isOfType(event.error, Error))
-			log.push(cast(event.error, Error).message);
-		else if (Std.isOfType(event.error, ErrorEvent))
-			log.push(cast(event.error, ErrorEvent).text);
+		if (stage != null)
+		{
+			init();
+		}
 		else
-			log.push(Std.string(event.error));
-
-		for (item in CallStack.exceptionStack(true))
 		{
-			switch (item)
-			{
-				case CFunction:
-					log.push('C Function');
-				case Module(m):
-					log.push('Module [$m]');
-				case FilePos(s, file, line, column):
-					log.push('$file [line $line]');
-				case Method(classname, method):
-					log.push('$classname [method $method]');
-				case LocalFunction(name):
-					log.push('Local Function [$name]');
-			}
+			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
-
-		final msg:String = log.join('\n');
-
-		#if sys
-		try
-		{
-			if (!FileSystem.exists('errors'))
-				FileSystem.createDirectory('errors');
-
-			File.saveContent('errors/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', msg);
-		}
-		catch (e:Exception)
-			Log.trace('Couldn\'t save error message "${e.message}"', null);
-		#end
-
-		Log.trace(msg, null);
-		Lib.application.window.alert(msg, 'Error!');
-		LimeSystem.exit(1);
 	}
 
-	private inline function onCriticalError(error:Dynamic):Void
+	private function init(?E:Event):Void
 	{
-		final log:Array<String> = [Std.isOfType(error, String) ? error : Std.string(error)];
-
-		for (item in CallStack.exceptionStack(true))
+		if (hasEventListener(Event.ADDED_TO_STAGE))
 		{
-			switch (item)
-			{
-				case CFunction:
-					log.push('C Function');
-				case Module(m):
-					log.push('Module [$m]');
-				case FilePos(s, file, line, column):
-					log.push('$file [line $line]');
-				case Method(classname, method):
-					log.push('$classname [method $method]');
-				case LocalFunction(name):
-					log.push('Local Function [$name]');
-			}
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 
-		final msg:String = log.join('\n');
-
-		#if sys
-		try
-		{
-			if (!FileSystem.exists('errors'))
-				FileSystem.createDirectory('errors');
-
-			File.saveContent('errors/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.txt', msg);
-		}
-		catch (e:Exception)
-			Log.trace('Couldn\'t save error message "${e.message}"', null);
-		#end
-
-		Log.trace(msg, null);
-		Lib.application.window.alert(msg, 'Error!');
-		LimeSystem.exit(1);
+		setupGame();
 	}
 
-	private inline function onResizeGame(width:Int, height:Int):Void
+	var video:Video;
+	var netStream:NetStream;
+	private var overlay:Sprite;
+
+	public static var fpsCounter:FPS;
+
+	private function setupGame():Void
 	{
-		#if mobile
-		final scale:Float = Math.min(FlxG.stage.stageWidth / FlxG.width, FlxG.stage.stageHeight / FlxG.height);
+		var stageWidth:Int = Lib.current.stage.stageWidth;
+		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (fpsOverlay != null)
-			fpsOverlay.scaleX = fpsOverlay.scaleY = (scale > 1 ? scale : 1);
-		#end
-
-		if (FlxG.cameras != null && (FlxG.cameras.list != null && FlxG.cameras.list.length > 0))
+		if (zoom == -1)
 		{
-			for (camera in FlxG.cameras.list)
-			{
-				if (camera != null && (camera.filters != null && camera.filters.length > 0))
-				{
-					// Shout out to Ne_Eo for bringing this to my attention.
-					@:privateAccess
-					if (camera.flashSprite != null)
-					{
-						camera.flashSprite.__cacheBitmap = null;
-						camera.flashSprite.__cacheBitmapData = null;
-					}
-				}
-			}
+			var ratioX:Float = stageWidth / gameWidth;
+			var ratioY:Float = stageHeight / gameHeight;
+			zoom = Math.min(ratioX, ratioY);
+			gameWidth = Math.ceil(stageWidth / zoom);
+			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 
-		@:privateAccess
-		if (FlxG.game != null)
-		{
-			FlxG.game.__cacheBitmap = null;
-			FlxG.game.__cacheBitmapData = null;
-		}
-	}
-
-	private inline function onPreStateCreate(state:FlxState):Void
-	{
-		var cache:AssetCache = cast(Assets.cache, AssetCache);
-
-		// Clear the loaded graphics if they are no longer in flixel cache...
-		for (key in cache.bitmapData.keys())
-			if (!FlxG.bitmap.checkCache(key))
-				cache.bitmapData.remove(key);
-
-		// Clear all the loaded sounds from the cache...
-		for (key in cache.sound.keys())
-			cache.sound.remove(key);
-
-		// Clear all the loaded fonts from the cache...
-		for (key in cache.font.keys())
-			cache.font.remove(key);
-
-		#if MODS
-		// Clear the loaded assets from polymod...
-		Polymod.clearCache();
+		#if !debug
+		initialState = TitleState;
 		#end
+
+		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+
+		fpsCounter = new FPS(10, 3, 0xFFFFFF);
+		addChild(fpsCounter);
+		/* 
+			video = new Video();
+			addChild(video);
+
+			var netConnection = new NetConnection();
+			netConnection.connect(null);
+
+			netStream = new NetStream(netConnection);
+			netStream.client = {onMetaData: client_onMetaData};
+			netStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, netStream_onAsyncError);
+
+			#if (js && html5)
+			overlay = new Sprite();
+			overlay.graphics.beginFill(0, 0.5);
+			overlay.graphics.drawRect(0, 0, 560, 320);
+			overlay.addEventListener(MouseEvent.MOUSE_DOWN, overlay_onMouseDown);
+			overlay.buttonMode = true;
+			addChild(overlay);
+
+			netConnection.addEventListener(NetStatusEvent.NET_STATUS, netConnection_onNetStatus);
+			#else
+			netStream.play("assets/preload/music/dredd.mp4");
+			#end 
+		 */
 	}
+	/* 
+		private function client_onMetaData(metaData:Dynamic)
+		{
+			video.attachNetStream(netStream);
+
+			video.width = video.videoWidth;
+			video.height = video.videoHeight;
+		}
+
+		private function netStream_onAsyncError(event:AsyncErrorEvent):Void
+		{
+			trace("Error loading video");
+		}
+
+		private function netConnection_onNetStatus(event:NetStatusEvent):Void
+		{
+		}
+
+		private function overlay_onMouseDown(event:MouseEvent):Void
+		{
+			netStream.play("assets/preload/music/dredd.mp4");
+		}
+	 */
 }
