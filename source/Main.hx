@@ -6,13 +6,7 @@ import openfl.Assets;
 import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
-import openfl.events.AsyncErrorEvent;
 import openfl.events.Event;
-import openfl.events.MouseEvent;
-import openfl.events.NetStatusEvent;
-import openfl.media.Video;
-import openfl.net.NetConnection;
-import openfl.net.NetStream;
 
 class Main extends Sprite
 {
@@ -55,12 +49,6 @@ class Main extends Sprite
 		setupGame();
 	}
 
-	var video:Video;
-	var netStream:NetStream;
-	private var overlay:Sprite;
-
-	public static var fpsCounter:FPS;
-
 	private function setupGame():Void
 	{
 		var stageWidth:Int = Lib.current.stage.stageWidth;
@@ -76,12 +64,13 @@ class Main extends Sprite
 		}
 
 		#if !debug
-		initialState = TitleState;
+		initialState = WarningState;
 		#end
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
-		fpsCounter = new FPS(10, 3, 0xFFFFFF);
-		addChild(fpsCounter);
-    }
+		#if !mobile
+		addChild(new FPS(10, 3, 0xFFFFFF));
+		#end
+	}
 }
