@@ -1,3 +1,0 @@
-.haxelib/*
-!.vscode/settings.json
-export/*
