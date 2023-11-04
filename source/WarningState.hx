@@ -19,10 +19,9 @@ class WarningState extends FlxState
 
     override public function update(elapsed:Float)
     {
-        if (FlxG.mouse.justPressed)
-        {
-            FlxG.switchState(new MenuState());
-        }
         super.update(elapsed);
+
+        if (FlxG.mouse.justPressed)
+            FlxG.nextState(new MenuState());
     }
 }
