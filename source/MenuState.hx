@@ -2,7 +2,7 @@ package;
 
 import flixel.FlxState;
 
-class WarningState extends FlxState
+class MenuState extends FlxState
 {
     private var menuText = "FNAF IS NOT DONE YET";
 

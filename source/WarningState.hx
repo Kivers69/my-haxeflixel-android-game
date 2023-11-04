@@ -1,7 +1,9 @@
 package;
 
-import flixel.FlxState;
 import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.util.FlxColor;
 
 class WarningState extends FlxState
 {
