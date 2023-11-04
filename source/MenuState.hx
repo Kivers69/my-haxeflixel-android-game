@@ -4,14 +4,13 @@ import flixel.FlxState;
 
 class MenuState extends FlxState
 {
-    private var menuText = "FNAF IS NOT DONE YET";
-
     override public function create()
     {
-        var menuTxt = new flixel.text.FlxText(0, 0, 0, menuText, 64);
-        menuTxt.screenCenter();
-        menuTxt.size = 30;
-        add(menuTxt);
+        var notdone = new flixel.text.FlxText(0, 0, FlxG.width,
+        "THE GAME IS NOT FULLY DONE", 30);
+        notdone.alignment = FlxTextAlign.CENTER;
+        notdone.screenCenter();
+        add(notdone);
 
         super.create();
     }

@@ -9,6 +9,7 @@ class WarningState extends FlxState
     {
         var warnTxt = new flixel.text.FlxText(0, 0, FlxG.width,
         "WARNING!\n\nThis game contains flashing lights, loud\nnoises, and alots of jumpscares!\n", 30);
+        warnTxt.alignment = FlxTextAlign.CENTER;
         warnTxt.screenCenter();
         add(warnTxt);
 
