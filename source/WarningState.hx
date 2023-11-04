@@ -22,6 +22,6 @@ class WarningState extends FlxState
         super.update(elapsed);
 
         if (FlxG.mouse.justPressed)
-            FlxG.nextState(new MenuState());
+            FlxG.switchState(new MenuState());
     }
 }
