@@ -1,9 +1,7 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.util.FlxColor;
 
 class WarningState extends FlxState
 {
@@ -24,6 +22,8 @@ class WarningState extends FlxState
         super.update(elapsed);
 
         if (FlxG.mouse.justPressed)
+        {
             FlxG.switchState(new MenuState());
+        }
     }
 }
