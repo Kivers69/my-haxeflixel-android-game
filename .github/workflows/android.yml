@@ -1,18 +1,26 @@
-name: Android
-on: workflow_dispatch
+name: Compile
+on:
+  push:
+  workflow_dispatch:
 jobs:
-  Build:
+   Android:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
       - name: Checkout
         uses: actions/checkout@main
 
-      - name: Setup Java JDK
+      - name: Setup Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@main
+        with:
+          ndk-version: r21e
+
+      - name: Setup Java
         uses: actions/setup-java@main
         with:
-          distribution: 'temurin'
           java-version: '11'
+          distribution: 'temurin'
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
@@ -20,44 +28,19 @@ jobs:
           haxe-version: latest
 
       - name: Restore Previous Cache
-        if: ${{ always() }}
-        id: cache-debug-build-android-restore
+        id: cache-build-restore
         uses: actions/cache/restore@main
         with:
           path: |
-            ~/haxelib
-            ~/.gradle
-            export/release/android/haxe
-            export/release/android/obj
+            .haxelib
+            export/android/haxe
+            export/android/obj
           key: cache-android-build
 
-      - name: Install Libraries
+      - name: Installing Libraries
         run: |
-          haxelib setup ~/haxelib
-          haxelib git extension-androidtools https://github.com/mcagabe19-stuff/extension-androidtools.git
-          haxelib install flixel-addons 3.0.2 --quiet
-          haxelib install flixel-tools 1.5.1 --quiet
-          haxelib install flixel-ui 2.5.0 --quiet
-          haxelib install flixel 5.2.2 --quiet
-          haxelib git hxCodec https://github.com/mcagabe19-stuff/hxCodec.git
-          haxelib install SScript 7.0.0 --quiet
-          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git
-          haxelib install lime 8.1.0 --quiet
-          haxelib git flxanimate https://github.com/ShadowMario/flxanimate dev
-          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit.git
-          haxelib install openfl 9.2.2 --quiet
-          haxelib install tjson 1.4.0 --quiet
-          haxelib git extension-orientation https://github.com/HaxeExtension/extension-orientation.git
-
-      - name: Setup git hxcpp
-        run: |
-          cd $(haxelib libpath hxcpp)/tools/hxcpp
-          haxe compile.hxml
-          cd ${{ github.workspace }}
-
-      - name: Info
-        run: echo haxe --version && haxelib list
-
+          haxelib install hmm
+          haxelib run hmm install
       - name: Configure Android
         run: |
           haxelib run lime setup -alias -y
@@ -65,15 +48,13 @@ jobs:
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_HOME
           haxelib run lime config JAVA_HOME $JAVA_HOME
           haxelib run lime config ANDROID_SETUP true
-
-      - name: Compile
-        run: haxelib run lime build android -arm64 -release
         env:
-          cert_pass: nullfunni
-          cert_alias_pass: nullfunni
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      - name: Building
+        run: haxelib run lime build android -debug
 
       - name: Clear Previous Cache
-        if: ${{ always() }}
         uses: actions/github-script@main
         with:
           script: |
@@ -96,25 +77,21 @@ jobs:
             		}
             	}
             } catch (error) {
-            	console.log(error.message);
+            	console.log(error.message)
             }
-
       - name: Save Current Cache
-        if: ${{ always() }}
-        id: cache-release-build-android-save
+        id: cache-build-save
         uses: actions/cache/save@main
         with:
           path: |
-            ~/haxelib
-            ~/.gradle
-            export/release/android/haxe
-            export/release/android/obj
+            .haxelib
+            export/android/haxe
+            export/android/obj
           key: cache-android-build
 
       - name: Upload Artifact
-        if: ${{ success() }}
         uses: actions/upload-artifact@main
         with:
           name: androidBuild
-          path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+          path: export/android/bin/app/build/outputs/apk/debug
           if-no-files-found: warn
