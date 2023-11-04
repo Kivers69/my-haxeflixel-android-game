@@ -5,11 +5,10 @@ import flixel.FlxState;
 
 class WarningState extends FlxState
 {
-    private var warnText = "WARNING!\n\nThis game contains flashing lights, loud\nnoises, and alots of jumpscares!\n";
-
     override public function create()
     {
-        var warnTxt = new flixel.text.FlxText(FlxG.width, 0, 0, warnText, 30);
+        var warnTxt = new flixel.text.FlxText(0, 0, FlxG.width,
+        "WARNING!\n\nThis game contains flashing lights, loud\nnoises, and alots of jumpscares!\n", 30);
         warnTxt.screenCenter();
         add(warnTxt);
 
