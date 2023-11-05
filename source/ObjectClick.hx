@@ -1,13 +1,12 @@
 package;
 
-import flixel.Sprite;
 import flixel.FlxG;
 
 class ObjectClick extends FlxG
 {
-    public static function click(obj:String):Void
+    public function click(obj:String):Void
     {
-        if (Flxg.mouse.x > obj.x && Flxg.mouse.width < obj.x + obj.width && Flxg.mouse.y > obj.y && Flxg.mouse.height < obj.y + obj.height)
+        if (FlxG.mouse.x > obj.x && FlxG.mouse.width < obj.x + obj.width && FlxG.mouse.y > obj.y && FlxG.mouse.height < obj.y + obj.height)
         {
             return true;
         }
