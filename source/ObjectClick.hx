@@ -4,9 +4,12 @@ import flixel.FlxG;
 
 class ObjectClick extends FlxG
 {
-    public function click(obj:String):Void
+    public static function click(obj:String)
     {
-        if (FlxG.mouse.x > obj.x && FlxG.mouse.width < obj.x + obj.width && FlxG.mouse.y > obj.y && FlxG.mouse.height < obj.y + obj.height)
+        if (FlxG.mouse.x > obj.x &&
+            FlxG.mouse.x < obj.x + obj.width &&
+            FlxG.mouse.y > obj.y &&
+            FlxG.mouse.y < obj.y + obj.height)
         {
             return true;
         }
