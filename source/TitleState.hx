@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
-import flixel.FlxSprite;
 
 class TitleState extends FlxState
 {
@@ -15,15 +14,6 @@ class TitleState extends FlxState
         notdone.screenCenter();
         add(notdone);
 
-        var hitbox = new FlxSprite();
-        hitbox.makeGraphic(200, 200, FlxColor.WHITE);
-        hitbox.alpha = 0.5;
-        hitbox.x = notdone.x;
-        hitbox.y = notdone.y;
-        hitbox.width = notdone.width;
-        hitbox.width = notdone.width;
-        add(hitbox);
-
         super.create();
     }
 
@@ -31,7 +21,7 @@ class TitleState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.mouse.overlaps(hitbox) && FlxG.mouse.justPressed)
+        if (FlxG.mouse.overlaps(notdone))
         {
             FlxG.switchState(new WarningState());
         }
