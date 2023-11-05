@@ -8,7 +8,7 @@ class TitleState extends FlxState
 {
     override public function create()
     {
-        var notdone = new flixel.text.FlxText(0, 0, FlxG.width,
+        var notdone = new FlxText(0, 0, FlxG.width,
         "THE GAME IS NOT FULLY DONE", 30);
         notdone.alignment = FlxTextAlign.CENTER;
         notdone.screenCenter();
@@ -21,7 +21,7 @@ class TitleState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.mouse.justPressed)
+        if (FlxG.mouse.overlaps(notdone.text) && FlxG.mouse.justPressed)
         {
             FlxG.switchState(new WarningState());
         }
