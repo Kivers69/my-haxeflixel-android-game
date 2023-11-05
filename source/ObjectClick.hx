@@ -4,7 +4,7 @@ import flixel.FlxG;
 
 class ObjectClick extends FlxG
 {
-    public static function click(obj:String)
+    public static function click(obj:String):Bool
     {
         if (FlxG.mouse.x > obj.x &&
             FlxG.mouse.x < obj.x + obj.width &&
