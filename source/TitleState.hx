@@ -9,7 +9,7 @@ class TitleState extends FlxState
     override public function create()
     {
         var notdone = new FlxText(0, 0, FlxG.width,
-        "THE GAME IS NOT FULLY DONE", 30);
+        "THE GAME IS NOT FULLY DONE", 20);
         notdone.alignment = FlxTextAlign.CENTER;
         notdone.screenCenter();
         add(notdone);

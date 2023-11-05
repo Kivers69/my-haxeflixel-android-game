@@ -10,7 +10,7 @@ class WarningState extends FlxState
     override public function create()
     {
         var warnTxt = new FlxText(0, 0, FlxG.width,
-        "WARNING!\n\nThis game contains flashing lights, loud\nnoises, and alots of jumpscares!\n", 30);
+        "WARNING!\n\nThis game contains flashing lights, loud\nnoises, and alots of jumpscares!\n", 20);
         warnTxt.alignment = FlxTextAlign.CENTER;
         warnTxt.screenCenter();
         add(warnTxt);
@@ -24,9 +24,7 @@ class WarningState extends FlxState
 
         if (FlxG.mouse.justPressed)
         {
-            FlxTween.tween(warnTxt,{alpha: 0},1.5,
-            {onComplete: FlxG.switchState(new TitleState())}
-            );
+            FlxG.switchState(new TitleState());
         }
     }
 }
