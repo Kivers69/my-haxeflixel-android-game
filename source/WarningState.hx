@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import flixel.text.FlxText;
 
 class WarningState extends FlxState
 {
