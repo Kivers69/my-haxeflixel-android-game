@@ -22,7 +22,7 @@ class TitleState extends FlxState
     {
         super.update(elapsed);
 
-        if (ObjectClick.click(notdone) && FlxG.mouse.justPressed)
+        if (ObjectClick.clickJustPressed(notdone))
         {
             FlxG.switchState(new WarningState());
         }
