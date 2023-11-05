@@ -24,7 +24,9 @@ class WarningState extends FlxState
 
         if (FlxG.mouse.justPressed)
         {
-            FlxTween.tween(warnTxt.text,{alpha: 0},1.5,{onComplete: FlxG.switchState(new TitleState())});
+            FlxTween.tween(warnTxt,{alpha: 0},1.5,
+            {onComplete: FlxG.switchState(new TitleState())}
+            );
         }
     }
 }
