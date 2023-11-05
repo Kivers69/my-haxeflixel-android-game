@@ -3,7 +3,6 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
-import ObjectClick;
 
 class TitleState extends FlxState
 {
@@ -22,7 +21,7 @@ class TitleState extends FlxState
     {
         super.update(elapsed);
 
-        if (ObjectClick.clickJustPressed(notdone))
+        if (FlxG.mouse.overlaps(notdone) && FlxG.mouse.justPressed)
         {
             FlxG.switchState(new WarningState());
         }
