@@ -1,24 +1,27 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxBasic;
+//import flixel.FlxBasic;
 import flixel.FlxState;
 
 class ObjectClick extends FlxState
 {
-    public static function clickPressed(?ObjectOrGroup:FlxBasic)
+    public function clickPressed(name:String)
     {
-        if (FlxG.mouse.overlaps(ObjectOrGroup) && FlxG.mouse.pressed)
-        {}
+        if (FlxG.mouse.overlaps(name) && FlxG.mouse.pressed)
+        {return true;
+        }
     }
-    public static function clickJustPressed(?ObjectOrGroup:FlxBasic)
+    public function clickJustPressed(name:String)
     {
-        if (FlxG.mouse.overlaps(ObjectOrGroup) && FlxG.mouse.justPressed)
-        {}
+        if (FlxG.mouse.overlaps(name) && FlxG.mouse.justPressed)
+        {return true;
+        }
     }
-    public static function clickJustReleased(?ObjectOrGroup:FlxBasic)
+    public function clickJustReleased(name:String)
     {
-        if (FlxG.mouse.overlaps(ObjectOrGroup) && FlxG.mouse.justReleased)
-        {}
+        if (FlxG.mouse.overlaps(name) && FlxG.mouse.justReleased)
+        {return true;
+        }
     }
 }
