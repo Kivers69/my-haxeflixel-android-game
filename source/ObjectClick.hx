@@ -1,22 +1,23 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxBasic;
 
 class ObjectClick extends FlxG
 {
-    public static function clickPressed(object:String):Void
+    public static function clickPressed(ObjectOrGroup:FlxBasic):Void
     {
-        if (FlxG.mouse.overlaps(object) && flxG.mouse.pressed)
+        if (FlxG.mouse.overlaps(ObjectOrGroup) && flxG.mouse.pressed)
         {}
     }
-    public static function clickJustPressed(object:String):Void
+    public static function clickJustPressed(?ObjectOrGroup:FlxBasic):Void
     {
-        if (FlxG.mouse.overlaps(object) && flxG.mouse.justPressed)
+        if (FlxG.mouse.overlaps(ObjectOrGroup) && flxG.mouse.justPressed)
         {}
     }
-    public static function clickJustReleased(object:String):Void
+    public static function clickJustReleased(?ObjectOrGroup:FlxBasic):Void
     {
-        if (FlxG.mouse.overlaps(object) && flxG.mouse.justReleased)
+        if (FlxG.mouse.overlaps(ObjectOrGroup) && flxG.mouse.justReleased)
         {}
     }
 }
