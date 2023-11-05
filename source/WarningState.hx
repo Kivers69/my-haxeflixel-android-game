@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.FlxTween;
 
 class WarningState extends FlxState
 {
@@ -23,7 +24,7 @@ class WarningState extends FlxState
 
         if (FlxG.mouse.justPressed)
         {
-            FlxG.switchState(new TitleState());
+            FlxTween.tween(warnTxt,{alpha: 0},1.5,{onComplete: (twn:FlxTween) -> FlxG.switchState(new TitleState())});
         }
     }
 }
