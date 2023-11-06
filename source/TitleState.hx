@@ -9,8 +9,8 @@ class TitleState extends FlxState
 {
     override public function create()
     {
-        makeHxSprite(bg,"assets/images/title/menubg-0");
-        addHxSprite(bg,false);
+        makeHxSprite(bg,"assets/images/title/menubg-0",0,0);
+        add(bg);
 
         var notdone = new FlxText(0, 0, FlxG.width,
         "THE GAME IS NOT FULLY DONE", 20);

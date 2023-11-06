@@ -11,13 +11,4 @@ class FlxHx extends FlxSprite
         tag.x = x;
         tag.y = y;
     }
-    public static function addHxSprite(spr:String,shit:Bool):Void
-    {
-        add(spr);
-
-        if (shit == true)
-        {
-        spr.order = 10;
-        }
-    }
 }
