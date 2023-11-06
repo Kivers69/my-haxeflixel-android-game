@@ -15,10 +15,9 @@ class FlxHx extends FlxSprite
     {
         add(spr);
 
-        if (shit)
+        if (shit == true)
         {
         spr.order = 10;
-        else
         }
     }
 }
