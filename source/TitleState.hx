@@ -3,11 +3,15 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import FlxHx;
 
 class TitleState extends FlxState
 {
     override public function create()
     {
+        makeHxSprite(bg,"assets/images/title/menubg-0");
+        addHxSprite(bg,false);
+
         var notdone = new FlxText(0, 0, FlxG.width,
         "THE GAME IS NOT FULLY DONE", 20);
         notdone.alignment = FlxTextAlign.CENTER;
@@ -21,7 +25,7 @@ class TitleState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.mouse.overlaps(notdone.text) && FlxG.mouse.justPressed)
+        if (FlxG.mouse.justPressed)
         {
             FlxG.switchState(new WarningState());
         }
