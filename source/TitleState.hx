@@ -9,7 +9,7 @@ class TitleState extends FlxState
 {
     override public function create()
     {
-        if bg = new FlxSprite();
+        var bg = new FlxSprite();
         bg.loadGraphic('assets/images/title/menubg-0.png')
         bg.setPostcio
         add(bg);
