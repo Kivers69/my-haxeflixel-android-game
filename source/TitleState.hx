@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import flixel.FlxSprite;
 import flixel.text.FlxText;
 import FlxHx;
 
@@ -9,7 +10,9 @@ class TitleState extends FlxState
 {
     override public function create()
     {
-        makeHxSprite(bg,"assets/images/title/menubg-0",0,0);
+        if bg = new FlxSprite();
+        bg.loadGraphic('assets/images/title/menubg-0.png')
+        bg.setPostcio
         add(bg);
 
         var notdone = new FlxText(0, 0, FlxG.width,
