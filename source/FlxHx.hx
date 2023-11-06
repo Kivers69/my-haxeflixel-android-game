@@ -9,7 +9,7 @@ class FlxHx extends FlxSprite
         var tag = new FlxSprite();
         tag.loadGraphic(path + ".png");
         tag.x = x;
-        tag y = y;
+        tag.y = y;
     }
     public static function addHxSprite(spr:String,shit:Bool):Void
     {
