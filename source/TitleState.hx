@@ -5,13 +5,11 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 
-class TitleState extends FlxState
+class TitleState
 {
     override public function create()
     {
-        var bg = new FlxSprite();
-        bg.loadGraphic('assets/images/title/menubg-0.png')
-        bg.setPostcio
+        var bg = new FlxSprite('assets/images/title/menubg-0.png',0,0);
         add(bg);
 
         var notdone = new FlxText(0, 0, FlxG.width,
