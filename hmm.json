@@ -1,44 +1,39 @@
 {
-	"dependencies": [
-		{
-			"name": "hxcpp",
-			"type": "haxelib"
-		},
-		{
-			"name": "lime",
-			"type": "haxelib"
-		},
-		{
-			"name": "openfl",
-			"type": "haxelib"
-		},
-		{
-			"name": "flixel",
-			"type": "haxelib"
-		},
-		{
-			"name": "flixel-addons",
-			"type": "haxelib"
-		},
-		{
-			"name": "hxdiscord_rpc",
-			"type": "haxelib"
-		},
-		{
-			"name": "hscript",
-			"type": "git",
-			"ref": "master",
-			"url": "https://github.com/HaxeFoundation/hscript.git"
-		},
-		{
-			"name": "polymod",
-			"type": "git",
-			"ref": "develop",
-			"url": "https://github.com/larsiusprime/polymod.git"
-		},
-		{
-			"name": "extension-androidtools",
-			"type": "haxelib"
-		}
-	]
+    "dependencies": [
+        {
+            "name": "hxcpp",
+            "type": "haxelib",
+            "version": "4.2.1"
+        },
+        {
+            "name": "lime",
+            "type": "haxelib",
+            "version": "7.9.0"
+        },
+        {
+            "name": "openfl",
+            "type": "haxelib",
+            "version": "9.1.0"
+        },
+        {
+            "name": "flixel",
+            "type": "haxelib",
+            "version": "4.11.0"
+        },
+        {
+            "name": "flixel-addons",
+            "type": "haxelib",
+            "version": "2.11.0"
+        },
+        {
+            "name": "flixel-tools",
+            "type": "haxelib",
+            "version": "1.5.1"
+        },
+        {
+            "name": "flixel-ui",
+            "type": "haxelib",
+            "version": "2.5.0"
+        }
+    ]
 }
