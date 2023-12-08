@@ -5,7 +5,7 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 
-class TitleState
+class TitleState extends FlxSprite
 {
     override public function create()
     {
