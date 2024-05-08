@@ -9,8 +9,8 @@ class PlayState extends FlxState
 {
     override public function create()
     {
-        var notdone = new FlxText(0, 0, FlxG.width,
-        "THE GAME IS NOT FULLY DONE", 20);
+        var textThing:String = 'no title for this game :(';
+        var notdone:FlxText = new FlxText(0, 0, FlxG.width,textThing, 20);
         notdone.alignment = FlxTextAlign.CENTER;
         notdone.screenCenter();
         add(notdone);
@@ -21,5 +21,8 @@ class PlayState extends FlxState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
+        if (FlxG.mouse.justPressed) {
+            //FlxG.switchState(new gameState);
+        }
     }
 }
