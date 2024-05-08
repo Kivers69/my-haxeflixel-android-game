@@ -1,7 +1,7 @@
 name: Android
 on:
-  workflow_dispatch:
-  jobs:
+workflow_dispatch:
+jobs:
   buildAndroid:
     name: buildAndroid
     runs-on: ubuntu-latest
