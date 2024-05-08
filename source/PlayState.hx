@@ -5,7 +5,7 @@ import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 
-class playState extends FlxState
+class PlayState extends FlxState
 {
     override public function create()
     {
