@@ -32,7 +32,7 @@ class PlayState extends GameState {
     }
 
     function preset() {
-        var thingy:scripts;
+        var thingy = scripts;
 
         thingy.set('FlxG', FlxG);
         thingy.set('FlxSprite', FlxSprite);
