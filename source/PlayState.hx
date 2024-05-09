@@ -6,26 +6,23 @@ import flixel.text.FlxText;
 import tea.SScript;
 
 class PlayState extends GameState {
-    override public function create() {
-        var textThing:String = 'no title for this game :(';
-
-        var notdone:FlxText = new FlxText(0, 0, FlxG.width,textThing, 20);
+    var textThing:String = 'no title for this game';
+    var notdone:FlxText;
+    var scripts:SScript;
+    override function create() {
+        notdone = new FlxText(0, 0, FlxG.width,textThing, 20);
         add(notdone);
 
-        var scripts:SScript = new SScript('assets/scripts/script.hx');
-
-        /*
-        var tileThing:Tiles = new Tiles(0,0,'room');
-        add(tileThing);
-        */
+        scripts = new SScript('assets/scripts/script.hx');
 
         super.create();
 
         scripts.call('create');
+        scripts.execute();
         preset();
     }
 
-    override public function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         super.update(elapsed);
 
         scripts.call('update');
