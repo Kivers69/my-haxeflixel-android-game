@@ -6,7 +6,13 @@ import flixel.group.FlxSpriteGroup;
 import flixel.FlxG;
 
 typedef TileJson = {
-    backgroundColor:Int
+    var backgroundColor:Int;
+    var solid:Array<SolidArray>;
+}
+
+typedef SolidArray = {
+    var x:Float;
+    var y:Float;
 }
 
 class Tile extends FlxSpriteGroup {
