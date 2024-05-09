@@ -17,7 +17,7 @@ typedef SolidArray = {
 
 class Tile extends FlxSpriteGroup {
     public function new(json:String) {
-        super(x,y,tiles);
+        super(json);
 
         var tile:TileJson;
         tile = Json.parse('assets/data/room/' + json + '.json');
@@ -35,7 +35,7 @@ class Tile extends FlxSpriteGroup {
     }
 
     override function update(elapsed:Float) {
-        super.update(Float);
+        super.update(elapsed);
         //FlxG.colide();
     }
 }
