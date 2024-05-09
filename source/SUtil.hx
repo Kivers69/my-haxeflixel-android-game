@@ -52,7 +52,7 @@ class SUtil
 
 			if (!FileSystem.exists(SUtil.getPath() + 'assets'))
 			{
-				SUtil.applicationAlert('Uncaught Error', "seen like you don't have assets folder and mods folder," + "\n" + " try copy assets and mods folder from apk and paste in " + getPath());
+				SUtil.applicationAlert('Uncaught Error', "assets folder doesn't exist" + "\n" + " please copy assets folder from apk and paste in " + getPath());
 				System.exit(0);
 			}
 		}
