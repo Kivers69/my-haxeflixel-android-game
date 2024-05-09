@@ -50,7 +50,7 @@ class SUtil
 			if (!FileSystem.exists(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file')))
 				FileSystem.createDirectory(Tools.getExternalStorageDirectory() + '/' + '.' + Application.current.meta.get('file'));
 
-			if (!FileSystem.exists(SUtil.getPath() + 'assets') || !FileSystem.exists(SUtil.getPath() + 'mods'))
+			if (!FileSystem.exists(SUtil.getPath() + 'assets'))
 			{
 				SUtil.applicationAlert('Uncaught Error', "seen like you don't have assets folder and mods folder," + "\n" + " try copy assets and mods folder from apk and paste in " + getPath());
 				System.exit(0);
