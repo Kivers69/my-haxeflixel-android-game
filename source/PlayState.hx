@@ -10,7 +10,6 @@ using StringTools;
 class PlayState extends GameState {
     var textThing:String = 'no title for this game';
     var notdone:FlxText;
-    var scripts:SScript;
     override function create() {
         notdone = new FlxText(0, 0, FlxG.width,'', 20);
         add(notdone);
@@ -18,7 +17,8 @@ class PlayState extends GameState {
         //testing
         for (file in FileSystem.readDirectory('assets/scripts')) {
             if (file.endsWith('.hx')) {
-                notdone.text = textThing + '\nscripts file list' + file + '\n';
+                var fileList:String = file + '\n';
+                notdone.text = textThing + '\nscripts file list\n' + fileList;
             }
         }
 
