@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import tea.SScript;
 
 class PlayState extends GameState {
     override public function create() {
@@ -10,6 +11,8 @@ class PlayState extends GameState {
 
         var notdone:FlxText = new FlxText(0, 0, FlxG.width,textThing, 20);
         add(notdone);
+
+        var scripts:SScript = new SScript('assets/scripts/script.hx');
 
         /*
         var tileThing:Tiles = new Tiles(0,0,'room');
