@@ -1,0 +1,10 @@
+{
+    "world":[0,0,960,300],
+    "backgroundColor":"B7B7B7",
+    "playerPos":[150,197],
+    "playerFacing":"down",
+    "showSolid":true,
+    "solid":[
+        {"x":150, "y":170}
+    ]
+}
