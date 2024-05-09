@@ -15,10 +15,8 @@ typedef SolidArray = {
     var y:Float;
 }
 
-class Tiles extends FlxSprite {
-    public function new(x:Float, y:Float, ?json:String = 'room') {
-        super(x, y);
-
+class Tiles {
+    public function new(?json:String = 'room') {
         var tile:TileJson;
         tile = Json.parse('assets/data/room/' + json + '.json');
 
@@ -30,7 +28,6 @@ class Tiles extends FlxSprite {
             gy.solid = true;
             thing.add(gy);
         }
-
         FlxG.camera.bgColor = tile.backgroundColor;
     }
 
