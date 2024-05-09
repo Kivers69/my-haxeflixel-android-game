@@ -15,7 +15,7 @@ typedef SolidArray = {
     var y:Float;
 }
 
-class Tiles extends FlxObject {
+class Tiles extends FlxSprite {
     public function new(x:Float, y:Float, ?json:String = 'room') {
         super(x, y);
 
