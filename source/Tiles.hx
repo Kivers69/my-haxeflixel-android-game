@@ -14,7 +14,7 @@ class Tile extends FlxSpriteGroup {
         super(x,y,tiles);
 
         var tile:TileJson;
-        tile = Json.parse('assets/data/' + json + '.json');
+        tile = Json.parse('assets/data/room/' + json + '.json');
 
         var thing:FlxSpriteGroup = new FlxSpriteGroup(0,0);
 
@@ -25,7 +25,7 @@ class Tile extends FlxSpriteGroup {
             thing.add(gy);
         }
 
-        FlxG.camera.bgColor = backgroundColor;
+        FlxG.camera.bgColor = tile.backgroundColor;
     }
 
     function update(elapsed:Float) {
