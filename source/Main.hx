@@ -25,7 +25,7 @@ class Main extends Sprite {
 
 	public function new() {
 		super();
-
+		SUtil.gameCrashCheck();
 		if (stage != null) {
 			init();
 		} else {
@@ -42,6 +42,8 @@ class Main extends Sprite {
 	}
 
 	private function setupGame():Void {
+		SUtil.doTheCheck();
+
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
