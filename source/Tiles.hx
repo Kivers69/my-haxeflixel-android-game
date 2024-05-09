@@ -34,7 +34,7 @@ class Tile extends FlxSpriteGroup {
         FlxG.camera.bgColor = tile.backgroundColor;
     }
 
-    function update(elapsed:Float) {
+    override function update(elapsed:Float) {
         super.update(Float);
         //FlxG.colide();
     }
