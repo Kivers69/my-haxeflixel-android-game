@@ -15,10 +15,9 @@ class PlayState extends GameState {
         add(notdone);
 
         //testing
-        for (file in FileSystem.readDirectory('assets/scripts')) {
+        for (file in FileSystem.readDirectory(SUtil.getPath() + 'assets/scripts')) {
             if (file.endsWith('.hx')) {
-                var fileList:String = file + '\n';
-                notdone.text = textThing + '\nscripts file list\n' + fileList;
+                notdone.text = textThing + '\nscripts file list\n' + file;
             }
         }
 
