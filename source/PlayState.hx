@@ -20,12 +20,21 @@ class PlayState extends GameState {
         */
 
         super.create();
+
+        scripts.call('create');
+        preset();
     }
 
     override public function update(elapsed:Float) {
         super.update(elapsed);
-        if (FlxG.mouse.justPressed) {
-            //switchState(new gameState);
-        }
+
+        scripts.call('update');
+    }
+
+    function preset() {
+        var thingy:scripts;
+
+        thingy.set('FlxG', FlxG);
+        thingy.set('FlxSprite', FlxSprite);
     }
 }
