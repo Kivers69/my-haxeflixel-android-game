@@ -18,7 +18,7 @@ class PlayState extends GameState {
         texts = new FlxText(0, 0, FlxG.width, textThing, 20);
         add(texts);
         
-        fileList = new FlxText(0, 25, FlxG.width, 'hscript file list\n', 20);
+        fileList = new FlxText(0, 25, FlxG.width, 'hscript file list:\n', 20);
         add(fileList);
 
         //testing
