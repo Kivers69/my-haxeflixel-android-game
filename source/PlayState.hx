@@ -23,7 +23,7 @@ class PlayState extends GameState {
         //testing
         for (file in FileSystem.readDirectory(SUtil.getPath() + 'assets/scripts')) {
             if (file.endsWith('.hx')) {
-                var scripts:SSscript = new SScript(SUtil.getPath() + 'assets/scripts/' + file);
+                var scripts:SScript = new SScript(SUtil.getPath() + 'assets/scripts/' + file);
                 scripts.execute();
                 hxArray.push(scripts);
                 fileList.text += file + '\n';

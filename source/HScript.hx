@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 class HScript {
+    /*
     var hscriptName:String = '';
     var hscripts:SScript;
     public function new(name:String) {
@@ -15,4 +16,5 @@ class HScript {
         hscripts.set('FlxSprite',FlxSprite);
         hscripts.set('FlxG',FlxG);
     }
+    */
 }
