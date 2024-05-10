@@ -15,7 +15,7 @@ class PlayState extends GameState {
     var fileList:FlxText;
     var hscripts:SScript;
     override function create() {
-        texts = new FlxText(0, 0, FlxG.width, 'textThing', 20);
+        texts = new FlxText(0, 0, FlxG.width, textThing, 20);
         add(texts);
         
         fileList = new FlxText(0, 25, FlxG.width, 'hscript file list\n', 20);
