@@ -13,23 +13,23 @@ class Player extends FlxSprite {
         animation.add('up', [4,5,4,5], 5, false);
         animation.add('down', [6,7,6,7], 5, false);
     
-        facing(facings);
+        playerFacing(facings);
         animation.finish();
     }
     
     override function update(elapsed:Float) {
         if (FlxG.keys.pressed.LEFT) {
-            facing('left');
+            playerFacing('left');
             x -= 3;
         } else if (FlxG.keys.pressed.RIGHT) {
-            facing('right');
+            playerFacing('right');
             x += 3;
         }
         if (FlxG.keys.pressed.UP) {
-            facing('up');
+            playerFacing('up');
             y -= 3;
         } else if (FlxG.keys.pressed.DOWN) {
-            facing('down');
+            playerFacing('down');
             y += 3;
         }
         
@@ -39,7 +39,7 @@ class Player extends FlxSprite {
         }
     }
     
-    public function facing(anim:String) {
+    public function playerFacing(anim:String):Void {
         animation.play(anim);
     }
 }
