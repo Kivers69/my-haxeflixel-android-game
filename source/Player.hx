@@ -12,6 +12,7 @@ class Player extends FlxSprite {
         animation.add('right', [2,3,3,3], 5, false);
         animation.add('up', [4,5,4,5], 5, false);
         animation.add('down', [6,7,6,7], 5, false);
+    
         facing(facings);
         animation.finish();
     }
@@ -38,7 +39,7 @@ class Player extends FlxSprite {
         }
     }
     
-    public function facing(anim:String = 'down'):Void {
+    public function facing(anim:String) {
         animation.play(anim);
     }
 }
