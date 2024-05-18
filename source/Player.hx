@@ -6,10 +6,8 @@ import flixel.FlxG;
 class Player extends FlxSprite {
     public function new(x:Float, y:Float, image:String, w:Int, h:Int) {
         super(x,y);
-        
-        var path:String = SUtil.getPath() + 'assets/images/$image.png';
-        
-        loadGraphic(paths, false, w, h);
+
+        loadGraphic(Paths.image('frisk'), false, w, h);
         animation.add('left', {0,1,0,1}, 5, false);
         animation.add('right', {2,3,3,3}, 5, false);
         animation.add('up', {4,5,4,5}, 5, false);

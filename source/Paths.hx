@@ -1,8 +1,11 @@
 package;
 
-//I don't know what to do with assets path
 class Paths {
+    function getPath(path:String) {
+        return SUtil.getPath() + 'assets/$path';
+    }
+
     public function image(image:String) {
-        return 'assets/images/' + image + '.png';
+        return getPath('images/$image.png');
     }
 }
