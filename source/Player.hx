@@ -8,10 +8,10 @@ class Player extends FlxSprite {
         super(x,y);
 
         loadGraphic(Paths.image('frisk'), false, w, h);
-        animation.add('left', {0,1,0,1}, 5, false);
-        animation.add('right', {2,3,3,3}, 5, false);
-        animation.add('up', {4,5,4,5}, 5, false);
-        animation.add('down', {6,7,6,7}, 5, false);
+        animation.add('left', [0,1,0,1], 5, false);
+        animation.add('right', [2,3,3,3], 5, false);
+        animation.add('up', [4,5,4,5], 5, false);
+        animation.add('down', [6,7,6,7], 5, false);
         facing(facings);
         animation.finish();
     }
