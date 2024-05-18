@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 class Player extends FlxSprite {
-    public function new(x:Float, y:Float, image:String, w:Int, h:Int) {
+    public function new(x:Float, y:Float, image:String, w:Int, h:Int, ?facings:String = 'down') {
         super(x,y);
 
         loadGraphic(Paths.image('frisk'), false, w, h);
@@ -12,21 +12,23 @@ class Player extends FlxSprite {
         animation.add('right', {2,3,3,3}, 5, false);
         animation.add('up', {4,5,4,5}, 5, false);
         animation.add('down', {6,7,6,7}, 5, false);
+        facing(facings);
+        animation.finish();
     }
     
     override function update(elapsed:Float) {
         if (FlxG.keys.pressed.LEFT) {
-            playAnimation('left');
+            facing('left');
             x -= 3;
         } else if (FlxG.keys.pressed.RIGHT) {
-            playAnimation('right');
+            facing('right');
             x += 3;
         }
         if (FlxG.keys.pressed.UP) {
-            playAnimation('up');
+            facing('up');
             y -= 3;
         } else if (FlxG.keys.pressed.DOWN) {
-            playAnimation('down');
+            facing('down');
             y += 3;
         }
         
@@ -36,7 +38,7 @@ class Player extends FlxSprite {
         }
     }
     
-    public function playAnimation(anim:String = 'down', loop:Bool = false):Void {
-        animation.play(anim,loop);
+    public function facing(anim:String = 'down') {
+        animation.play(anim);
     }
 }
