@@ -1,6 +1,5 @@
 package;
 
-import flixel.FlxSprite;
 import flixel.FlxG;
 
 class Player extends FlxSprite {
@@ -38,7 +37,7 @@ class Player extends FlxSprite {
         }
     }
     
-    public function facing(anim:String = 'down') {
+    public function facing(anim:String = 'down'):Void {
         animation.play(anim);
     }
 }
