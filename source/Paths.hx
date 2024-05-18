@@ -1,11 +1,11 @@
 package;
 
 class Paths {
-    function getPath(path:String) {
-        return SUtil.getPath() + 'assets/$path';
+    static public function getPath(file:String) {
+        return SUtil.getPath() + 'assets/$file';
     }
 
-    public function image(image:String) {
-        return getPath('images/$image.png');
+    inline static public function image(key:String):Dynamic {
+        return getPath('images/$key.png');
     }
 }
