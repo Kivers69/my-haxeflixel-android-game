@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 class Player extends FlxSprite {
-    public function new(x:Float, y:Float, image:String, w:Int, h:Int, ?facings:String = 'down') {
+    public function new(x:Float, y:Float, ?image:String = 'frisk', w:Int, h:Int, ?facings:String = 'down') {
         super();
 
         loadGraphic(Paths.image(image), false, w, h);
