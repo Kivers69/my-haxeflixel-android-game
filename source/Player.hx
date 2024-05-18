@@ -4,10 +4,10 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 
 class Player extends FlxSprite {
-    public function new(x:Float, y:Float, ?image:String = 'frisk', w:Int, h:Int, ?facings:String = 'down') {
+    public function new(x:Float, y:Float, char:String, w:Int, h:Int, ?facings:String = 'down') {
         super();
 
-        loadGraphic(Paths.image(image), false, w, h);
+        loadGraphic(Paths.image(char), false, w, h);
         animation.add('left', [0,1,0,1], 5, false);
         animation.add('right', [2,3,3,3], 5, false);
         animation.add('up', [4,5,4,5], 5, false);
