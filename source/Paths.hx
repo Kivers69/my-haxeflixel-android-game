@@ -5,7 +5,7 @@ class Paths {
         return SUtil.getPath() + 'assets/$file';
     }
 
-    inline static public function image(key:String):Dynamic {
+    inline static public function image(key:String):String {
         return getPath('images/$key.png');
     }
 }
