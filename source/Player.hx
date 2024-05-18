@@ -4,7 +4,7 @@ import flixel.FlxG;
 
 class Player extends FlxSprite {
     public function new(x:Float, y:Float, image:String, w:Int, h:Int, ?facings:String = 'down') {
-        super(x,y);
+        super();
 
         loadGraphic(Paths.image('frisk'), false, w, h);
         animation.add('left', [0,1,0,1], 5, false);
